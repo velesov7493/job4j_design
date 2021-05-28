@@ -15,12 +15,20 @@ public class MatrixIt implements Iterator<Integer> {
         column = 0;
     }
 
-    private void nextCell() {
-        column++;
-        while (
-            row < data.length
-            && column >= data[row].length
-        ) {
+    private boolean endOfLine() {
+        return row < data.length && column >= data[row].length;
+    }
+
+    private boolean endOfMatrix() {
+        return row >= data.length;
+    }
+
+    /**
+     * Проверка ячейки под указателем [row,column] на конец строки
+     * Если строка закончилась, а матрица - нет, то сдвинуть указатель на начало новой строки
+     */
+    private void checkEOL() {
+        while (endOfLine()) {
             column = 0;
             row++;
         }
@@ -28,10 +36,8 @@ public class MatrixIt implements Iterator<Integer> {
 
     @Override
     public boolean hasNext() {
-        if (column >= data[row].length) {
-            nextCell();
-        }
-        return row < data.length;
+        checkEOL();
+        return !endOfMatrix();
     }
 
     @Override
@@ -39,8 +45,8 @@ public class MatrixIt implements Iterator<Integer> {
         if (!hasNext()) {
             throw new NoSuchElementException();
         }
-        int result = data[row][column];
-        nextCell();
+        int result = data[row][column++];
+        checkEOL();
         return result;
     }
 }
