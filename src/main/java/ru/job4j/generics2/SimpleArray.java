@@ -5,10 +5,31 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
-public class SimpleArray<T> implements Iterator<T> {
+public class SimpleArray<T> implements Iterable<T> {
+
+    final class ElementsIterator implements Iterator<T> {
+
+        private int position;
+
+        public ElementsIterator() {
+            position = 0;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return position < size;
+        }
+
+        @Override
+        public T next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            return (T) elements[position++];
+        }
+    }
 
     private Object[] elements;
-    private int position;
     private int size;
 
     public SimpleArray(int aMaxSize) {
@@ -46,21 +67,7 @@ public class SimpleArray<T> implements Iterator<T> {
     }
 
     public Iterator<T> iterator() {
-        position = 0;
-        return this;
-    }
-
-    @Override
-    public boolean hasNext() {
-        return position < size;
-    }
-
-    @Override
-    public T next() {
-        if (!hasNext()) {
-            throw new NoSuchElementException();
-        }
-        return (T) elements[position++];
+        return new ElementsIterator();
     }
 
     @Override
