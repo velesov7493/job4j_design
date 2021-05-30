@@ -2,7 +2,6 @@ package ru.job4j.generics3;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.NoSuchElementException;
 import java.util.Objects;
 
 public final class MemStore<T extends Base> implements Store<T> {
@@ -35,11 +34,7 @@ public final class MemStore<T extends Base> implements Store<T> {
 
     @Override
     public T findById(String id) {
-        T result = mem.get(id);
-        if (result == null) {
-            throw new NoSuchElementException();
-        }
-        return result;
+        return mem.get(id);
     }
 
     @Override

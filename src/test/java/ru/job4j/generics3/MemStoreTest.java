@@ -59,11 +59,11 @@ public class MemStoreTest {
         assertEquals(in2, ms1.findById("0002"));
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test
     public void whenFindFail() {
         MemStore<User> ms1 = new MemStore<>();
         User in2 = new User("0002", "Петров В.Н.");
         ms1.add(in2);
-        ms1.findById("0003");
+        assertNull(ms1.findById("0003"));
     }
 }
