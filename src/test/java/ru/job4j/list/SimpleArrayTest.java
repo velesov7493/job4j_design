@@ -58,6 +58,7 @@ public class SimpleArrayTest {
     @Test
     public void whenResize() {
         SimpleArray<String> array = new SimpleArray<>(10);
+        SimpleArray<String> expected = new SimpleArray<>();
         array.add("one");
         array.add("two");
         array.add("three");
@@ -69,5 +70,17 @@ public class SimpleArrayTest {
         array.add("nine");
         array.add("ten");
         array.add("eleven");
+        expected.add("one");
+        expected.add("two");
+        expected.add("three");
+        expected.add("four");
+        expected.add("five");
+        expected.add("six");
+        expected.add("seven");
+        expected.add("eight");
+        expected.add("nine");
+        expected.add("ten");
+        expected.add("eleven");
+        assertEquals(expected, array);
     }
 }

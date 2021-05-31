@@ -108,11 +108,25 @@ public class SimpleArray<T> implements Iterable<T> {
             return false;
         }
         SimpleArray<?> that = (SimpleArray<?>) o;
-        return Arrays.equals(elements, that.elements);
+        if (size != that.size) {
+            return false;
+        }
+        boolean result = true;
+        for (int i = 0; i < size; i++) {
+            if (!Objects.equals(elements[i], that.elements[i])) {
+                result = false;
+                break;
+            }
+        }
+        return result;
     }
 
     @Override
     public int hashCode() {
-        return Arrays.hashCode(elements);
+        int result = 0;
+        for (int i = 0; i < size; i++) {
+            result ^= Objects.hashCode(elements[i]);
+        }
+        return result;
     }
 }
