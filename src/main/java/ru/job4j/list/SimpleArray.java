@@ -47,22 +47,10 @@ public class SimpleArray<T> implements Iterable<T> {
     }
 
     private void resize() {
-        double fullness = (double) size / capacity;
-        if (fullness > 0.0618 && fullness < 1) {
-            return;
-        }
-        if (size == capacity) {
-            capacity *= 1.618;
-        } else if (fullness < 0.618) {
+        if (size == elements.length) {
             capacity = (int) Math.ceil(1.5 * size);
+            elements = Arrays.copyOf(elements, capacity);
         }
-        Object[] newElements = new Object[capacity];
-        System.arraycopy(
-                elements, 0,
-                newElements, 0,
-                size
-        );
-        elements = newElements;
     }
 
     public void add(T model) {
@@ -125,7 +113,7 @@ public class SimpleArray<T> implements Iterable<T> {
     public int hashCode() {
         int result = 0;
         for (int i = 0; i < size; i++) {
-            result ^= Objects.hashCode(elements[i]);
+            result ^= i ^ Objects.hashCode(elements[i]);
         }
         return result;
     }

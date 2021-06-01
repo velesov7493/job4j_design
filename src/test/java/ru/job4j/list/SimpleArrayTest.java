@@ -56,7 +56,7 @@ public class SimpleArrayTest {
     }
 
     @Test
-    public void whenResize() {
+    public void whenGrow() {
         SimpleArray<String> array = new SimpleArray<>(10);
         SimpleArray<String> expected = new SimpleArray<>();
         array.add("one");
