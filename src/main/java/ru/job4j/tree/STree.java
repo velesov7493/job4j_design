@@ -7,4 +7,6 @@ public interface STree<E> {
     boolean add(E parent, E child);
 
     Optional<TreeNode<E>> findBy(E value);
+
+    boolean isBinary();
 }
