@@ -61,11 +61,11 @@ public class SimpleMap<K, V> implements SMap<K, V> {
     }
 
     private int hash(int hashCode) {
-        return 0x7FFFFFFF & (hashCode ^ (hashCode >>> 16));
+        return Math.abs(hashCode ^ (hashCode >>> 16));
     }
 
     private int indexFor(int hash) {
-        return hash % (capacity - 1);
+        return hash % capacity;
     }
 
     private int indexOf(K key) {
@@ -104,13 +104,16 @@ public class SimpleMap<K, V> implements SMap<K, V> {
     @Override
     public V get(K key) {
         int i = indexOf(key);
-        return table[i] == null ? null : table[i].value;
+        return
+                table[i] == null
+                || !key.equals(table[i].key)
+                ? null : table[i].value;
     }
 
     @Override
     public boolean remove(K key) {
         int i = indexOf(key);
-        boolean result = table[i] != null;
+        boolean result = table[i] != null && key.equals(table[i].key);
         if (result) {
             table[i] = null;
             modCount++;
