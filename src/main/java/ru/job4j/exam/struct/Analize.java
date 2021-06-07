@@ -2,12 +2,6 @@ package ru.job4j.exam.struct;
 
 import java.util.*;
 
-/**
- * Добавленные - с id, отсутствующем в исходном списке
- * Измененные - с существующим id, но другим именем
- * Удаленные - id отсутствует в текущем списке
- */
-
 public class Analize {
 
     final static class Info {
@@ -72,32 +66,26 @@ public class Analize {
     }
 
     public Info diff(List<User> previous, List<User> current) {
-        int added = 0;
+        int added;
         int changed = 0;
         int deleted = 0;
         HashMap<Integer, User> hPrevious = new HashMap<>();
         for (User prevUser : previous) {
             hPrevious.put(prevUser.id, prevUser);
         }
-        HashMap<Integer, User> hCurrent = new HashMap<>();
-        for (User curUser : current) {
-            hCurrent.put(curUser.id, curUser);
-        }
-        for (int currentId : hCurrent.keySet()) {
-            User prevUser = hPrevious.get(currentId);
-            if (prevUser == null) {
-                added++;
-            }
-        }
         for (int prevId : hPrevious.keySet()) {
-            User curUser = hCurrent.get(prevId);
             User prevUser = hPrevious.get(prevId);
-            if (curUser == null) {
+            int i = current.indexOf(prevUser);
+            if (i < 0) {
                 deleted++;
-            } else if (!curUser.name.equals(prevUser.name)) {
-                changed++;
+            } else {
+                User curUser = current.get(i);
+                if (!curUser.name.equals(prevUser.name)) {
+                    changed++;
+                }
             }
         }
+        added = current.size() - previous.size() + deleted;
         return new Info(added, changed, deleted);
     }
 }
