@@ -65,27 +65,45 @@ public class Analize {
         }
     }
 
+    private String previousCode(int id) {
+        return "P" + id;
+    }
+
+    private String currentCode(int id) {
+        return "C" + id;
+    }
+
+    private boolean isPreviousCode(String code) {
+        return code.charAt(0) == 'P';
+    }
+
     public Info diff(List<User> previous, List<User> current) {
-        int added;
+        int added = 0;
         int changed = 0;
         int deleted = 0;
-        HashMap<Integer, User> hPrevious = new HashMap<>();
+        HashMap<String, User> users = new HashMap<>();
         for (User prevUser : previous) {
-            hPrevious.put(prevUser.id, prevUser);
+            users.put(previousCode(prevUser.id), prevUser);
         }
-        for (int prevId : hPrevious.keySet()) {
-            User prevUser = hPrevious.get(prevId);
-            int i = current.indexOf(prevUser);
-            if (i < 0) {
-                deleted++;
-            } else {
-                User curUser = current.get(i);
-                if (!curUser.name.equals(prevUser.name)) {
+        for (User currUser : current) {
+            users.put(currentCode(currUser.id), currUser);
+        }
+        for (String code  : users.keySet()) {
+            User u1 = users.get(code);
+            if (isPreviousCode(code)) {
+                User u2 = users.get(currentCode(u1.id));
+                if (u2 == null) {
+                    deleted++;
+                } else if (!u2.name.equals(u1.name)) {
                     changed++;
+                }
+            } else {
+                User u2 = users.get(previousCode(u1.id));
+                if (u2 == null) {
+                    added++;
                 }
             }
         }
-        added = current.size() - previous.size() + deleted;
         return new Info(added, changed, deleted);
     }
 }

@@ -100,4 +100,42 @@ public class AnalizeTest {
         assertEquals(0, info.getAdded());
     }
 
+    @Test
+    public void whenPrevDoublesNoChanges() {
+        List<Analize.User> prev = List.of(
+                new Analize.User(2, "Петров Василий Иванович"),
+                new Analize.User(3, "Баширов Валерий Викторович"),
+                new Analize.User(2, "Петров Василий Иванович"),
+                new Analize.User(3, "Баширов Валерий Викторович")
+        );
+        List<Analize.User> curr = List.of(
+                new Analize.User(2, "Петров Василий Иванович"),
+                new Analize.User(3, "Баширов Валерий Викторович")
+        );
+        Analize a = new Analize();
+        Analize.Info info = a.diff(prev, curr);
+        assertEquals(0, info.getChanged());
+        assertEquals(0, info.getDeleted());
+        assertEquals(0, info.getAdded());
+    }
+
+    @Test
+    public void whenCurrDoublesNoChanges() {
+        List<Analize.User> prev = List.of(
+                new Analize.User(2, "Петров Василий Иванович"),
+                new Analize.User(3, "Баширов Валерий Викторович")
+        );
+        List<Analize.User> curr = List.of(
+                new Analize.User(2, "Петров Василий Иванович"),
+                new Analize.User(3, "Баширов Валерий Викторович"),
+                new Analize.User(2, "Петров Василий Иванович"),
+                new Analize.User(3, "Баширов Валерий Викторович")
+        );
+        Analize a = new Analize();
+        Analize.Info info = a.diff(prev, curr);
+        assertEquals(0, info.getChanged());
+        assertEquals(0, info.getDeleted());
+        assertEquals(0, info.getAdded());
+    }
+
 }
