@@ -65,33 +65,29 @@ public class Analize {
         }
     }
 
-    private String previousCode(int id) {
-        return "P" + id;
+    private long previousCode(int id) {
+        return (long) id << 32;
     }
 
-    private String currentCode(int id) {
-        return "C" + id;
-    }
-
-    private boolean isPreviousCode(String code) {
-        return code.charAt(0) == 'P';
+    private boolean isPreviousCode(long code) {
+        return code > Integer.MAX_VALUE;
     }
 
     public Info diff(List<User> previous, List<User> current) {
         int added = 0;
         int changed = 0;
         int deleted = 0;
-        HashMap<String, User> users = new HashMap<>();
+        HashMap<Long, User> users = new HashMap<>();
         for (User prevUser : previous) {
             users.put(previousCode(prevUser.id), prevUser);
         }
         for (User currUser : current) {
-            users.put(currentCode(currUser.id), currUser);
+            users.put((long) currUser.id, currUser);
         }
-        for (String code  : users.keySet()) {
+        for (long code  : users.keySet()) {
             User u1 = users.get(code);
             if (isPreviousCode(code)) {
-                User u2 = users.get(currentCode(u1.id));
+                User u2 = users.get((long) u1.id);
                 if (u2 == null) {
                     deleted++;
                 } else if (!u2.name.equals(u1.name)) {
