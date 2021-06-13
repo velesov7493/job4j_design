@@ -1,4 +1,5 @@
 *.iml
+/*.txt
 .idea
 target
-/*.txt
+data

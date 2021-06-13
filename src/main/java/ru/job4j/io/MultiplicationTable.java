@@ -5,7 +5,7 @@ import java.io.FileOutputStream;
 public class MultiplicationTable {
 
     public static void main(String[] args) {
-        try (FileOutputStream out = new FileOutputStream("MultipleTable.txt")) {
+        try (FileOutputStream out = new FileOutputStream("./data/MultipleTable.txt")) {
             for (int i = 1; i < 10; i++) {
                 String line = i + ":";
                 for (int j = 1; j < 10; j++) {

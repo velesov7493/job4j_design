@@ -36,7 +36,7 @@ public class LogFilter {
     }
 
     public static void main(String[] args) {
-        List<String> log = filter("log.txt");
-        save(log, "log404.txt");
+        List<String> log = filter("./data/log.txt");
+        save(log, "./data/log404.txt");
     }
 }
