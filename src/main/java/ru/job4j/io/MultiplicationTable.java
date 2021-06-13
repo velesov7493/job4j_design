@@ -12,7 +12,7 @@ public class MultiplicationTable {
                     int value = i * j;
                     line += "\t" + value;
                 }
-                line += "\r\n";
+                line += System.lineSeparator();
                 out.write(line.getBytes());
             }
         } catch (Throwable ex) {
