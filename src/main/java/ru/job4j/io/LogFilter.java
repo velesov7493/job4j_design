@@ -1,7 +1,6 @@
 package ru.job4j.io;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -28,8 +27,16 @@ public class LogFilter {
         return result;
     }
 
+    public static void save(List<String> log, String fileName) {
+        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(fileName)))) {
+            log.stream().forEach(out::println);
+        } catch (Throwable ex) {
+            System.out.println("Ошибка записи файла " + fileName + ": " + ex.getMessage());
+        }
+    }
+
     public static void main(String[] args) {
         List<String> log = filter("log.txt");
-        log.stream().forEach(System.out::println);
+        save(log, "log404.txt");
     }
 }
