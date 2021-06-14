@@ -6,7 +6,17 @@ import java.util.List;
 
 public class Analizy {
 
-    public static List<String> unavailable(String srcFileName, String targetFileName) {
+    private static void saveTimeMarks(List<String> marks, String fileName) {
+        try (PrintWriter out = new PrintWriter(
+                new BufferedWriter(new FileWriter(fileName))
+        )) {
+            marks.stream().forEach(out::println);
+        } catch (IOException ex) {
+            System.out.println("Ошибка записи меток времени: " + ex.getMessage());
+        }
+    }
+
+    public static void unavailable(String srcFileName, String targetFileName) {
         List<String> timeMarks = new ArrayList<>();
         try (BufferedReader in = new BufferedReader(new FileReader(srcFileName))) {
             String line = in.readLine();
@@ -27,15 +37,8 @@ public class Analizy {
             System.out.println("Ошибка чтения файла лога: " + ex.getMessage());
         }
         if (timeMarks.size() == 0) {
-            return timeMarks;
+            return;
         }
-        try (PrintWriter out = new PrintWriter(
-                new BufferedWriter(new FileWriter(targetFileName))
-        )) {
-            timeMarks.stream().forEach(out::println);
-        } catch (IOException ex) {
-            System.out.println("Ошибка записи меток времени: " + ex.getMessage());
-        }
-        return timeMarks;
+        saveTimeMarks(timeMarks, targetFileName);
     }
 }
