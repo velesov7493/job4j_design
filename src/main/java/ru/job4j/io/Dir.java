@@ -19,21 +19,21 @@ public class Dir {
         File file = new File("c:\\projects");
         if (!file.exists()) {
             throw new IllegalArgumentException(
-                    String.format("Not exist %s", file.getAbsoluteFile())
+                    String.format("Файл не существует: %s", file.getAbsoluteFile())
             );
         }
         if (!file.isDirectory()) {
             throw new IllegalArgumentException(
-                    String.format("Not directory %s", file.getAbsoluteFile())
+                    String.format("Это не директория: %s", file.getAbsoluteFile())
             );
         }
-        System.out.println(String.format("size : %s", directorySize(file)));
+        System.out.println(String.format("Общий размер каталога: %s", directorySize(file)));
         File[] files = file.listFiles();
         if (files != null) {
             for (File subfile : files) {
                 System.out.println(String.format(
-                        "%-29s |\t%d", subfile.getAbsoluteFile(),
-                        directorySize(subfile)
+                        "%-29s|%10d|%10d", subfile.getAbsoluteFile(),
+                        subfile.length(), directorySize(subfile)
                 ));
             }
         }
