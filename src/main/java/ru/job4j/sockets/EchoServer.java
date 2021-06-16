@@ -1,5 +1,8 @@
 package ru.job4j.sockets;
 
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -11,7 +14,9 @@ import java.util.regex.Pattern;
 
 public class EchoServer {
 
-    public static void main(String[] args) throws IOException {
+    private final static Logger LOG = LoggerFactory.getLogger(EchoServer.class.getName());
+
+    public static void main(String[] args) {
         Pattern ptMessage = Pattern.compile("\\?msg=\\w+");
         try (ServerSocket server = new ServerSocket(9000)) {
             boolean finish = false;
@@ -44,6 +49,8 @@ public class EchoServer {
                     }
                 }
             }
+        } catch (IOException ex) {
+            LOG.error("Ошибка ввода-вывода сокета: ", ex);
         }
     }
 }
