@@ -14,10 +14,12 @@ public class ConsoleChat {
 
     private final String logFileName;
     private final String botAnswersFileName;
+    private List<String> log;
 
     public ConsoleChat(String aLogFileName, String answersFileName) {
         logFileName = aLogFileName;
         botAnswersFileName = answersFileName;
+        log = new ArrayList<>();
     }
 
     private List<String> readAnswers() {
@@ -32,32 +34,37 @@ public class ConsoleChat {
         return result;
     }
 
+    private void saveLog() {
+        try (PrintWriter pw = new PrintWriter(
+                new BufferedWriter(
+                        new FileWriter(logFileName)
+        ))) {
+            log.forEach(pw::println);
+        } catch (IOException ex) {
+            System.out.println("Ошибка записи журнала чата: " + ex.getMessage());
+        }
+    }
+
     public void run() {
         boolean finish = false;
         boolean active = true;
         List<String> answers = readAnswers();
         Scanner sc = new Scanner(System.in);
-        try (PrintWriter pw = new PrintWriter(
-                new BufferedWriter(
-                        new FileWriter(logFileName)
-        ))) {
-            while (!finish) {
-                System.out.print(">>");
-                String line = sc.nextLine();
-                active =
-                        !active && line.equals(CONTINUE)
-                        || active && !line.equals(STOP);
-                finish = line.equals(OUT);
-                pw.println(">>" + line);
-                if (active && !finish) {
-                    int i = (int) (answers.size() * Math.random());
-                    System.out.println("bot>>" + answers.get(i));
-                    pw.println("bot>>" + answers.get(i));
-                }
+        while (!finish) {
+            System.out.print(">>");
+            String line = sc.nextLine();
+            active =
+                    !active && line.equals(CONTINUE)
+                    || active && !line.equals(STOP);
+            finish = line.equals(OUT);
+            log.add(">>" + line);
+            if (active && !finish) {
+                int i = (int) (answers.size() * Math.random());
+                System.out.println("bot>>" + answers.get(i));
+                log.add("bot>>" + answers.get(i));
             }
-        } catch (IOException ex) {
-            System.out.println("Ошибка записи журнала чата: " + ex.getMessage());
         }
+        saveLog();
     }
 
     public static void main(String[] args) {
