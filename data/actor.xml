@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor active="true">
+    <id>77</id>
+    <avatarId>1233</avatarId>
+    <name>Иванов Иван Иванович</name>
+    <login>director8125</login>
+    <pass>123456</pass>
+    <birthDate>1980-01-01</birthDate>
+    <sex>Male</sex>
+    <phone>+79205104013</phone>
+    <email>director8125@school.ru</email>
+    <stats>
+        <actorState>
+            <id>21</id>
+            <actorId>77</actorId>
+            <roleId>1</roleId>
+            <professionId>2</professionId>
+            <name>Директор школы</name>
+        </actorState>
+        <actorState>
+            <id>22</id>
+            <actorId>77</actorId>
+            <roleId>4</roleId>
+            <professionId>3</professionId>
+            <disciplineId>11</disciplineId>
+            <name>Преподаватель физики</name>
+        </actorState>
+    </stats>
+</actor>
