@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<actor active="true">
-    <id>77</id>
-    <avatarId>1233</avatarId>
+<actor id="77" axatarId="1233">
     <name>Иванов Иван Иванович</name>
     <login>director8125</login>
     <pass>123456</pass>
     <birthDate>1980-01-01</birthDate>
-    <sex>Male</sex>
+    <sex>М</sex>
     <phone>+79205104013</phone>
     <email>director8125@school.ru</email>
     <stats>
