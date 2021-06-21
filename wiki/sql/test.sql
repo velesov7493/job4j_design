@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS tz_actors (
     aSex CHAR(1) NOT NULL,
     aPhone VARCHAR(20) NOT NULL,
     aEmail VARCHAR(60) NOT NULL UNIQUE,
-    aActivated SMALLINT NOT NULL,
+    aActivated SMALLINT DEFAULT 0,
     aFcmToken VARCHAR(250)
 );
 
