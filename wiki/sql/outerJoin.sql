@@ -1,7 +1,8 @@
 /* Создание таблиц */
 
-DROP TABLE IF EXISTS departments;
 DROP TABLE IF EXISTS employees;
+DROP TABLE IF EXISTS departments;
+DROP TABLE IF EXISTS teens;
 
 CREATE TABLE departments (
     id SERIAL PRIMARY KEY,
