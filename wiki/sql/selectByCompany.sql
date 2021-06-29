@@ -23,16 +23,16 @@ SELECT p.name, c.name
 FROM person AS p INNER JOIN company AS c ON
     p.company_id=c.id AND
     c.id <> 5
-ORDER BY 1,2;
+ORDER BY p.name, c.name;
 
 /*
 2. Необходимо выбрать название компании с максимальным количеством человек
 + количество человек в этой компании.
 */
 
-SELECT c.name, COUNT(p.id)
+SELECT c.name, COUNT(p.id) AS personCount
 FROM person AS p INNER JOIN company AS c ON
     p.company_id=c.id
 GROUP BY c.name
-ORDER BY 2 DESC
+ORDER BY personCount DESC
 LIMIT 1;
