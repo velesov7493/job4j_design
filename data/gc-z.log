@@ -1,0 +1,4 @@
+D:\sources\job4j\projects\job4j_design\target>java -jar -XX:+UseZGC -Xlog:gc:gc-z.log gc-demo.jar
+[0.008s][error][gc] Failed to lookup symbol: VirtualAlloc2
+Error occurred during initialization of VM
+ZGC requires Windows version 1803 or later
