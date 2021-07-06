@@ -18,8 +18,13 @@
 + CREATE, UPDATE, INSERT
 + Базовые запросы
 + Внешние соединения
++ JDBC
++ Проект: [Агрегатор java-вакансий][3]
++ Понятие "Сборщик мусора"
++ Виды сборщиков мусора
 ----
 Статистика сборки и покрытия тестами обеспечена [Travis CI][2] и [Codecov][1].
 
 [1]: https://codecov.io
 [2]: https://travis-ci.com
+[3]: https://github.com/velesov7493/job4j_grabber
