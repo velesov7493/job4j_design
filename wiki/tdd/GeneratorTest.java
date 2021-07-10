@@ -22,23 +22,19 @@ public class GeneratorTest() {
     @Test(expected = IllegalArgumentException.class)
     public void whenMissingReplace() {
         String in = "I am a ${name}, Who are ${subject}?";
-        String expected = "I am a Petr Arsentev, Who are you?";
         Generator g = new DefaultGenerator();
         Map<String, String> replaces = new HashMap();
         replaces.put("name", "Petr Arsentev");
         String result = g.produce(in, replaces);
-        assertEquals(expected, result);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void whenMissingTemplateKey() {
         String in = "I am a ${name}, Who are you?";
-        String expected = "I am a Petr Arsentev, Who are you?";
         Generator g = new DefaultGenerator();
         Map<String, String> replaces = new HashMap();
         replaces.put("name", "Petr Arsentev");
         replaces.put("subject", "you");
         String result = g.produce(in, replaces);
-        assertEquals(expected, result);
     }
 }
