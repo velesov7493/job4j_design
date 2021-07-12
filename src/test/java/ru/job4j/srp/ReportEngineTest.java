@@ -128,4 +128,64 @@ public class ReportEngineTest {
                 is(expect.toString())
         );
     }
+
+    @Test
+    public void whenJsonGenerated() {
+        MemStore store = new MemStore();
+        SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar now = Calendar.getInstance();
+        Employee worker1 = new Employee("Ivan", now, now, 13250.50);
+        store.add(worker1);
+        Report engine = new JsonReportEngine(store);
+        StringBuilder expect = new StringBuilder()
+                .append("[{")
+                .append("\"fired\":")
+                .append('"').append(f.format(worker1.getHired().getTime())).append("\",")
+                .append("\"name\":")
+                .append('"').append(worker1.getName()).append("\",")
+                .append("\"hired\":")
+                .append('"').append(f.format(worker1.getHired().getTime())).append("\",")
+                .append("\"salary\":")
+                .append(worker1.getSalary())
+                .append("}]");
+        assertThat(engine.generate(
+                em -> true, Comparator.comparing(Employee::getName),
+                null, null),
+                is(expect.toString())
+        );
+    }
+
+    @Test
+    public void whenXmlGenerated() {
+        MemStore store = new MemStore();
+        SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar now = Calendar.getInstance();
+        Employee worker1 = new Employee("Ivan", now, now, 13250.50);
+        store.add(worker1);
+        Report engine = new XmlReportEngine(store);
+        String ls = "\n";
+        StringBuilder expect = new StringBuilder()
+                .append("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>").append(ls)
+                .append("<employees>").append(ls)
+                .append("    <employee>").append(ls)
+                .append("        <name>")
+                .append(worker1.getName())
+                .append("</name>").append(ls)
+                .append("        <hired>")
+                .append(f.format(worker1.getHired().getTime()))
+                .append("</hired>").append(ls)
+                .append("        <fired>")
+                .append(f.format(worker1.getHired().getTime()))
+                .append("</fired>").append(ls)
+                .append("        <salary>")
+                .append(String.format("%g", worker1.getSalary()).replace(',', '.'))
+                .append("</salary>").append(ls)
+                .append("    </employee>").append(ls)
+                .append("</employees>");
+        assertThat(engine.generate(
+                em -> true, Comparator.comparing(Employee::getName),
+                "%g", null),
+                is(expect.toString())
+        );
+    }
 }
