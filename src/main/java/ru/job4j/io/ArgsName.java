@@ -38,4 +38,8 @@ public class ArgsName {
         names.parse(args);
         return names;
     }
+
+    public int size() {
+        return values.size();
+    }
 }
