@@ -1,6 +1,6 @@
-package ru.job4j.lsp.stores;
+package ru.job4j.lsp.foodstore.stores;
 
-import ru.job4j.lsp.products.Food;
+import ru.job4j.lsp.foodstore.products.Food;
 
 public class Trash extends AbstractStore implements FoodStore {
 

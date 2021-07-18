@@ -1,7 +1,7 @@
-package ru.job4j.lsp;
+package ru.job4j.lsp.foodstore;
 
-import ru.job4j.lsp.products.Food;
-import ru.job4j.lsp.stores.FoodStore;
+import ru.job4j.lsp.foodstore.products.Food;
+import ru.job4j.lsp.foodstore.stores.FoodStore;
 
 import java.util.List;
 import java.util.Map;

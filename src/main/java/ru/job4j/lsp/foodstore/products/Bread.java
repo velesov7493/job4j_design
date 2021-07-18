@@ -1,4 +1,4 @@
-package ru.job4j.lsp.products;
+package ru.job4j.lsp.foodstore.products;
 
 public class Bread extends Food {
 

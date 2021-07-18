@@ -1,13 +1,14 @@
 package ru.job4j.lsp;
 
 import org.junit.Test;
-import ru.job4j.lsp.products.Bread;
-import ru.job4j.lsp.products.Butter;
-import ru.job4j.lsp.products.Food;
-import ru.job4j.lsp.stores.FoodStore;
-import ru.job4j.lsp.stores.Shop;
-import ru.job4j.lsp.stores.Trash;
-import ru.job4j.lsp.stores.Warehouse;
+import ru.job4j.lsp.foodstore.ControlQuality;
+import ru.job4j.lsp.foodstore.products.Bread;
+import ru.job4j.lsp.foodstore.products.Butter;
+import ru.job4j.lsp.foodstore.products.Food;
+import ru.job4j.lsp.foodstore.stores.FoodStore;
+import ru.job4j.lsp.foodstore.stores.Shop;
+import ru.job4j.lsp.foodstore.stores.Trash;
+import ru.job4j.lsp.foodstore.stores.Warehouse;
 
 import java.util.*;
 
