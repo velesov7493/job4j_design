@@ -1,4 +1,4 @@
-package ru.job4j.lsp.parking;
+package ru.job4j.lsp.parking.vehicles;
 
 import java.util.Set;
 
@@ -8,6 +8,8 @@ public interface Parkable {
      * @return Размер парковочного места
      */
     int getParkingSpaceSize();
+
+    void setParkingSpaceSize(int value);
 
     /**
      *  Получить номера используемых парковочных мест

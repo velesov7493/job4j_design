@@ -1,13 +1,8 @@
 package ru.job4j.lsp.parking;
 
-public interface Parking {
+import ru.job4j.lsp.parking.vehicles.Parkable;
 
-    /**
-     * Остаток парковочных мест
-     * @param object - для какого транспорта
-     * @return количество свободных мест
-     */
-    int remainingParkingSpaces(Parkable object);
+public interface Parking {
 
     /**
      * Добавить транспорт на парковку
