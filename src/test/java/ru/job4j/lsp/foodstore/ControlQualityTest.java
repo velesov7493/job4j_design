@@ -1,7 +1,6 @@
-package ru.job4j.lsp;
+package ru.job4j.lsp.foodstore;
 
 import org.junit.Test;
-import ru.job4j.lsp.foodstore.ControlQuality;
 import ru.job4j.lsp.foodstore.products.Bread;
 import ru.job4j.lsp.foodstore.products.Butter;
 import ru.job4j.lsp.foodstore.products.Food;
