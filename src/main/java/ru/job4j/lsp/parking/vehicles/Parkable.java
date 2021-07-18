@@ -9,8 +9,6 @@ public interface Parkable {
      */
     int getParkingSpaceSize();
 
-    void setParkingSpaceSize(int value);
-
     /**
      *  Получить номера используемых парковочных мест
       * @return множество номеров мест или null

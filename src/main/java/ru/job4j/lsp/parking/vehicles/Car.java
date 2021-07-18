@@ -6,7 +6,4 @@ public class Car extends AbstractVehicle implements Parkable {
     public int getParkingSpaceSize() {
         return 1;
     }
-
-    @Override
-    public void setParkingSpaceSize(int value) { }
 }
