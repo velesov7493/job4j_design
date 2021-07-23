@@ -35,7 +35,7 @@ public class ControlQuality {
         products.forEach(this::distribute);
     }
 
-    public void redistributeAll() {
+    public void resort() {
         for (FoodStore src : stores) {
             Map<Food, Integer> products = src.getProducts();
             for (Food key : products.keySet()) {
