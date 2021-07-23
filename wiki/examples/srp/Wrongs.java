@@ -1,3 +1,10 @@
+/**
+ * SRP - single responsibility principle
+ * Принцип единственной ответственности
+ * Программная сущность (класс, пакет, модуль) должна иметь только одну ответственность.
+ *
+ */
+
 public interface XmlData<T> {
 
     void parseEx(String xml, String dateTimePattern, boolean replaceHtmlChars);
