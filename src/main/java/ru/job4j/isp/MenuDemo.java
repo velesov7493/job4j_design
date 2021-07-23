@@ -1,0 +1,64 @@
+package ru.job4j.isp;
+
+import ru.job4j.isp.io.ConsoleInput;
+import ru.job4j.isp.io.ConsoleOutput;
+import ru.job4j.isp.io.IInput;
+import ru.job4j.isp.io.IOutput;
+
+public class MenuDemo {
+
+    private IMenu menu;
+    private IInput input;
+    private IOutput output;
+    private boolean finish;
+
+    private ICommand closeCmd = () -> finish = true;
+
+    private ICommand addItemCmd = () -> {
+        String parentIndex = input.askStr("Индекс родителя: ");
+        String name = input.askStr("Заголовок нового пункта меню: ");
+        menu.addItem(parentIndex, name);
+    };
+
+    private ICommand removeItemCmd = () -> {
+        String index = input.askStr("Полный индекс пункта меню: ");
+        menu.removeItem(index);
+    };
+
+    private ICommand showMenuCmd = () -> menu.print();
+
+    public MenuDemo(IInput aInput, IOutput aOutput) {
+        input = aInput;
+        output = aOutput;
+        menu = new Menu(output);
+        menu.addItem("", "Основное");
+        menu.addItem("1", "Операции");
+        menu.addItem("1.1", "Добавить пункт меню");
+        menu.addItem("1.1", "Убрать пункт меню");
+        menu.addItem("1.1", "Показать меню");
+        menu.addItem("1", "Выход");
+        menu.addItem("", "Справка");
+        IMenuItem item = menu.getItemByFullIndex("1.1.1");
+        item.setCommand(addItemCmd);
+        item = menu.getItemByFullIndex("1.1.2");
+        item.setCommand(removeItemCmd);
+        item = menu.getItemByFullIndex("1.1.3");
+        item.setCommand(showMenuCmd);
+        item = menu.getItemByFullIndex("1.2");
+        item.setCommand(closeCmd);
+    }
+
+    public void run() {
+        menu.print();
+        finish = false;
+        while (!finish) {
+            String itemIndex = input.askStr("Выберите пункт меню: ");
+            menu.runItemCommand(itemIndex);
+        }
+    }
+
+    public static void main(String[] args) {
+        MenuDemo instance = new MenuDemo(new ConsoleInput(), new ConsoleOutput());
+        instance.run();
+    }
+}
