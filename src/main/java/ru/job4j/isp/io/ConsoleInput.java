@@ -2,7 +2,7 @@ package ru.job4j.isp.io;
 
 import java.util.Scanner;
 
-public class ConsoleInput implements IInput {
+public class ConsoleInput implements Input {
 
     private Scanner sc;
 

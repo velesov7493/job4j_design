@@ -3,11 +3,11 @@ package ru.job4j.isp;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SimpleMenuItem implements IMenuItem {
+public class SimpleMenuItem implements MenuItem {
 
     private String name;
-    private List<IMenuItem> children;
-    private ICommand command;
+    private List<MenuItem> children;
+    private Command command;
 
     public SimpleMenuItem(String aName) {
         name = aName;
@@ -20,7 +20,7 @@ public class SimpleMenuItem implements IMenuItem {
     }
 
     @Override
-    public void addChild(IMenuItem value) {
+    public void addChild(MenuItem value) {
         children.add(value);
     }
 
@@ -30,7 +30,7 @@ public class SimpleMenuItem implements IMenuItem {
     }
 
     @Override
-    public List<IMenuItem> getChildren() {
+    public List<MenuItem> getChildren() {
         return new ArrayList<>(children);
     }
 
@@ -45,12 +45,12 @@ public class SimpleMenuItem implements IMenuItem {
     }
 
     @Override
-    public ICommand getCommand() {
+    public Command getCommand() {
         return command;
     }
 
     @Override
-    public void setCommand(ICommand value) {
+    public void setCommand(Command value) {
         command = value;
     }
 }

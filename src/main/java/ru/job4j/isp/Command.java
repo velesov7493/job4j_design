@@ -1,7 +1,7 @@
 package ru.job4j.isp;
 
 @FunctionalInterface
-public interface ICommand {
+public interface Command {
 
     void execute();
 }

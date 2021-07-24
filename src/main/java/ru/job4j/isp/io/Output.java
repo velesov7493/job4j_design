@@ -1,5 +1,5 @@
 package ru.job4j.isp.io;
 
-public interface IOutput {
+public interface Output {
     void println(Object obj);
 }

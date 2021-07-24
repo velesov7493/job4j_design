@@ -1,6 +1,6 @@
 package ru.job4j.isp.io;
 
-public interface IInput {
+public interface Input {
 
     String askStr(String question);
 

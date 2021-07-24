@@ -2,21 +2,21 @@ package ru.job4j.isp;
 
 import java.util.List;
 
-public interface IMenuItem {
+public interface MenuItem {
 
     boolean hasChildren();
 
-    void addChild(IMenuItem value);
+    void addChild(MenuItem value);
 
     void removeChild(int index);
 
-    List<IMenuItem> getChildren();
+    List<MenuItem> getChildren();
 
     String getName();
 
     void setName(String value);
 
-    ICommand getCommand();
+    Command getCommand();
 
-    void setCommand(ICommand value);
+    void setCommand(Command value);
 }
