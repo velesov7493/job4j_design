@@ -25,7 +25,7 @@
 + Профилирование приложения
 + Типы ссылок и коллекции на soft и weak ссылках
 + Test Drive Development
-+ Принципы SOLID: srp, ocp
++ Принципы SOLID: srp, ocp, lsp, isp, dip
 ----
 Статистика сборки и покрытия тестами обеспечена [Travis CI][2] и [Codecov][1].
 
